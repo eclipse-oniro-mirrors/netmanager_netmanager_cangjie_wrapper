@@ -640,7 +640,13 @@ public enum NetBearType {
     ]
     BearerWifi
     |
-    @!Hide[isChecked: true]
+    /**
+     * Bluetooth network.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Communication.NetManager.Core"
+    ]
     BearerBluetooth
     |
     /**
@@ -652,7 +658,13 @@ public enum NetBearType {
     ]
     BearerEthernet
     |
-    @!Hide[isChecked: true]
+    /**
+     * VPN.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Communication.NetManager.Core"
+    ]
     BearerVpn
     | ...
 
@@ -664,6 +676,8 @@ public enum NetBearType {
             case BearerCellular => 0
             case BearerWifi => 1
             case BearerEthernet => 3
+            case BearerBluetooth => 2
+            case BearerVpn => 4
             case _ => throw BusinessException(2100001, "Invalid parameter value.")
         }
     }
@@ -676,6 +690,8 @@ public enum NetBearType {
             case 0 => BearerCellular
             case 1 => BearerWifi
             case 3 => BearerEthernet
+            case 2 => BearerBluetooth
+            case 4 => BearerVpn
             case _ => throw BusinessException(2100003, "System internal error.")
         }
     }
